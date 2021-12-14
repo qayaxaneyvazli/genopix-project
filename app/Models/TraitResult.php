@@ -11,7 +11,7 @@ class TraitResult extends Model
     use HasDateTimeFormatter;
 
     use SoftDeletes;
-
+    protected $guarded=[];
     protected $table = 'trait_results';
 
     protected $casts = [
@@ -36,5 +36,46 @@ class TraitResult extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+    public function snps(){
+
+        return $this->belongsToMany('App\Models\Snp','traitresult_snp');
+    }
+
+    public function rsids(){
+
+         return $this->belongsToMany('App\Models\Rsid','traitresult_rsid');
+    }
+
+    public function effectalleles(){
+
+        return $this->belongsToMany('App\Models\EffectAllele','traitresult_effectallele');
+    }
+    public function referencealleles(){
+
+        return $this->belongsToMany('App\Models\ReferenceAllele','traitresult_referenceallele');
+    }
+    public function genotypes(){
+
+        return $this->belongsToMany('App\Models\Genotype','traitresult_genotype');
+    }
+    public function reliabilities(){
+
+        return $this->belongsToMany('App\Models\Reliability','traitresult_reliability');
+    }
+
+    public function populations(){
+
+        return $this->belongsToMany('App\Models\Population','traitresult_population');
+    }
+    public function geneinlds(){
+
+        return $this->belongsToMany('App\Models\Geneinld','traitresult_geneinld');
+    }
+    public function references(){
+
+        return $this->belongsToMany('App\Models\Reference','traitresult_reference');
+    }
+
+
 
 }

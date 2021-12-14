@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Snp extends Model
 {
-	use HasDateTimeFormatter;
+    use HasDateTimeFormatter;
     use SoftDeletes;
+
+    public function traitresults(){
+
+        return $this->belongsToMany('App\Models\TraitResult','traitresult_snp');
     }
+
+}

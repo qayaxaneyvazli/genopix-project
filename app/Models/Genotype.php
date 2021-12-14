@@ -10,4 +10,9 @@ class Genotype extends Model
 {
 	use HasDateTimeFormatter;
     use SoftDeletes;
+
+    public function traitresults(){
+
+        return $this->belongsToMany('App\Models\TraitResult','traitresult_genotype');
+    }
     }

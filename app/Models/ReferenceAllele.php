@@ -12,5 +12,9 @@ class ReferenceAllele extends Model
     use SoftDeletes;
 
     protected $table = 'reference_alleles';
-    
+
+    public function traitresults(){
+
+        return $this->belongsToMany('App\Models\TraitResult','traitresult_referenceallele');
+    }
 }

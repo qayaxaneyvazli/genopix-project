@@ -12,5 +12,9 @@ class EffectAllele extends Model
     use SoftDeletes;
 
     protected $table = 'effect_alleles';
-    
+
+    public function traitresults(){
+
+        return $this->belongsToMany('App\Models\TraitResult','traitresult_effectallele');
+    }
 }
