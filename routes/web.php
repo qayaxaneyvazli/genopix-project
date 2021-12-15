@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Imports\TraitResultImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,5 @@ use App\Imports\TraitResultImport;
 
 Route::get('/', function () {
     return redirect('admin');
-});
-Route::get('/test', function () {
-
-
 });
 

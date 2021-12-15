@@ -36,22 +36,23 @@ class CheckExcelFile extends Command
 
     public function handle()
     {
-        $infoPath = pathinfo(storage_path('app\public\file.xlsx'));
 
-        $extension = $infoPath['basename'];
+        $publicPath = storage_path('app\public');
+        $publicFiles = File::allFiles($publicPath);
+        if ($publicFiles) {
+            foreach ($publicFiles as $file) {
+                $public = trim($file);
+                if (File::extension($public) == 'xls' || File::extension($public) == 'xlsx') {
+                    $date = date('Y-m-d');
+                    Excel::import(new TraitResultImport(), ($public));
+                    Log::info('File loaded');
 
-        if ( File::exists(storage_path('app\public\file.xlsx') )&& $extension=='file.xlsx') {
-
-            Excel::import(new TraitResultImport(), storage_path('app\public\file.xlsx'));
-            Log::info('File loaded');
-
-//        Log::info('File is exists');
-        } else {
-            Log::info('File is not exist');
-//        dd($infoPath);
-////                return dd(storage_path('app\public\excelfiles\file.xlsx'));
-///
+                    File::move($public, storage_path('app\oldfiles\oldData' . $date . '.xlsx'));
+                } else {
+                    Log::info('File is not exist');
+                }
+            }
         }
     }
-
 }
+
