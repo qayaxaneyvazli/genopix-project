@@ -17,7 +17,7 @@ class CreateUserProfilesTable extends Migration
             $table->increments('id');
             $table->string('gender')->nullable();
             $table->string('age')->nullable();
-            $table->string('ethnicities')->nullable();
+            $table->string('ethnic_id')->nullable();
             $table->string('interests')->nullable();
             $table->string('user_id')->nullable();
             $table->timestamps();
